@@ -1,0 +1,96 @@
+---
+- hosts:
+  - ovh
+  - vagrant
+
+  tasks:
+  - name: install postgres requirements
+    become_user: root
+    become: yes
+    apt: pkg={{item}} state=installed
+    with_items:
+      - python-psycopg2
+      - postgresql-server-dev-all
+
+  - name: install virtualenv
+    become_user: root
+    become: yes
+    apt: name=python-virtualenv
+
+  - name: install pip
+    become_user: root
+    become: yes
+    apt: name=python-pip
+
+  - name: install supervisord
+    become_user: root
+    become: yes
+    apt: name=supervisor
+
+  - name: create workdir
+    become_user: root
+    become: yes
+    file: path={{backend.workdir}} state=directory owner={{ansible_user_id}}
+
+  - name: prepare buildout env
+    pip: name=zc.buildout virtualenv={{backend.workdir}}
+
+  - name: copy buildout config
+    template: dest={{backend.workdir}}/buildout.cfg src=backend/backend.buildout
+
+  - name: run buildout
+    command: ./bin/buildout chdir={{backend.workdir}}
+
+  - name: create backend user
+    become_user: root
+    become: yes
+    user: name={{backend.user}} createhome=no system=yes shell=/usr/sbin/nologin
+
+  - name: create etc dir
+    file: path={{backend.workdir}}/etc state=directory
+
+  - name: create postgres user
+    become_user: postgres
+    become: yes
+    postgresql_user: name={{backend.database_user}} password={{backend.database_password}}
+
+  - name: create postgres database
+    become_user: postgres
+    become: yes
+    postgresql_db: name={{backend.database_name}} encoding='UTF-8' owner={{backend.database_user}}
+
+  - name: configure backend
+    template: dest={{backend.workdir}}/etc/backend.ini src=backend/backend.ini
+
+  - name: run database migration
+    command: ./bin/alembic -c etc/backend.ini upgrade head chdir={{backend.workdir}}
+
+  - name: configure supervisord
+    template: dest=/etc/supervisor/conf.d/mostusedsites_backend.conf src=backend/backend.supervisord
+    become_user: root
+    become: yes
+
+  - name: run backend instance
+    supervisorctl: name=mostusedsites_backend  state=restarted
+    become_user: root
+    become: yes
+
+  - name: configure nginx
+    template: dest=/etc/nginx/conf.d/mostusedsites_backend.conf src=backend/backend.nginx
+    become_user: root
+    become: yes
+
+#  - name: configure ssl key
+#    copy: dest=/etc/nginx/conf.d/kotti_neuland.key content="{{kotti.ssl_key}}" mode=0600
+#    become_user: root
+#    become: yes
+#
+#  - name: configure ssl crt
+#    copy: dest=/etc/nginx/conf.d/kotti_neuland.crt content="{{kotti.ssl_crt}}" mode=0600
+#    become_user: root
+#    become: yes
+
+  - name: restart nginx
+    service: name=nginx state=reloaded
+    become_user: root
+    become: yes

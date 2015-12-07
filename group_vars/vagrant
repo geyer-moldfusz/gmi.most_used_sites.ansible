@@ -1,0 +1,9 @@
+---
+backend:
+  user: mostusedsites
+  workdir: /srv/mostusedsites/backend
+  public_url: api.mostusedsites.guerilla-it.net.127.0.0.1.nip.io
+  port: 9000
+  database_user: mostusedsites
+  database_password: foobar
+  database_name: mostusedsites

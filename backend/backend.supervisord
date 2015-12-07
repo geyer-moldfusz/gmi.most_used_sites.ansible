@@ -1,0 +1,6 @@
+[program:mostusedsites_backend]
+autorestart=true
+command={{backend.workdir}}/bin/gunicorn --paste {{backend.workdir}}/etc/backend.ini
+directory={{backend.workdir}}
+redirect_stderr=true
+user={{backend.user}}
