@@ -2,8 +2,55 @@
 backend:
   user: mostusedsites
   workdir: /srv/mostusedsites/backend
-  public_url: api.mostusedsites.guerilla-it.net.127.0.0.1.nip.io
+  public_url: api.127.0.0.1.nip.io
   port: 9000
   database_user: mostusedsites
   database_password: foobar
   database_name: mostusedsites
+  ssl_key: |
+    -----BEGIN PRIVATE KEY-----
+    MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDSvrQLg3Mi6ESX
+    iYtVbkgGldwE5716CF23Bt7e3kdIvma8TW20D/JeBKrQ4ufHKJNPMHtLd46y38Ie
+    DNWMX/g/TJT7Ni8dEL1Kw+fs2m4gBbQDJGH3vD3BI7QJHcupYCzFfxh4UE/yjOxT
+    tBZhm5MhT1J4fkBzcSAhp2D2SW+g6xg7ongfyRFfs0PxtaN+VY/FSrcL6FH1i6Aj
+    5zA5JWBLQDKs0lUDeGew3llCno+JgnpsVkRH3Lbq/xV+lzI8/xbVPO8PaggRTpOs
+    3awoV/9JCGGfW5FKIH6XIaD51g6Vqe/ajswQzR0zrAf8F4tDBh+zpi4Cwt/F1Az9
+    vQ4JPaWXAgMBAAECggEBAKzH408pN2VgLpRbFVw2bWDQzrFK2eLKJyNew6zPanwu
+    doZdqNqe1GPWycE2tzZmgtfC9OL7o4ftwfXnKdHMAPjMrbyEQP5AciFxGp3qu60P
+    X/XPh26X672Eqx9qSUaVbj+BoytJFTLT7RH3LP5bkbYWlZPqVqcPEXvmAa4KqTWw
+    6xpkn6K9azEQ4Dyqg9ICOV9fOYzTSARhGbePxod77w6kub2sJx4HDmNSdp/wLr5V
+    67koLY64xcBSUcALWtFDpBVZ7aPX1RQl7E6t8qC8QwRD0EJkKME4qguAeuaSdQO5
+    bTy3TkvdEjKpu2IsmXoqxG1Y9y4qah/tTAVlzFIJkKkCgYEA/nSBEZjLF9dLN9eq
+    oxre5LiWsdLbOofb8P0RRWXq91kO8mWWE3Q8BpOVD5A20gO+ai+F368SQxQxxun+
+    PPw44rA3nP8WUSx5euKMuO0yxCHxGD1LhEu+gRk0s7LAVC3hxictOoaYFIcsdOGo
+    B+R0mrl9NPuQEaISQoBMCxQZsR0CgYEA1AZC1SqNLk5+cZFzkKxjbWndah6x4swD
+    RYx5S6NUJSKje3hfNZN0063db0lkcd/eUy7NW/4f98HlJx6NZ6K16YwZouYhbP85
+    CzfcHAQ2KRGqelPZKJZ0CqGrvMZrJJJChQGlAnUFxlbcrBfn3sbnjbIUybYkctAG
+    K8SK5fY2h0MCgYEArahnWdIUcU3uuMrIWw6ApkpQFkZYdia4dUzRV7KJ3It8RvQL
+    q3U9biOUrI14zHXfo2qRjCpYZU1H94BEkex1CkjHe68f1QBsW/B3p9HCPtcHSsqy
+    WjSzbDn+nNFWr1ys5GZiWLn42rGyJobG/bPt3JbRG7LADTi2C4qx2zG5owUCgYAJ
+    P9isifWsvnnfpHPBLPQNct/Y4EvsU/AUmaM0/IQQNqmhGkg1AyDGl0AgubfrC9Qc
+    Ft+YksZ8PXYstbV/fuamsJjxtU5h/eRUK/SrODfQpNemDIBdt+qKCDGAw7sq1kKW
+    oNK8/7PnyiRIUaao3k59rPYhMpP2ekK6qBFTJOGOFwKBgQDpH0wj8aJUa6n9jg8V
+    0T+znLv+GEkt06JavqgUQ4bSJifTWmwrpUJ473dFnMkabB8tpEY90VyyldmzwQk0
+    BstQ+6xSAKCp+VkElCuafa+Tw+Seu8d7Mymg9dXvr+4sKyIdTcIbn1PySBEsq5Wk
+    h0Zv1ZpbsOFK8KjaJIWSqg66zQ==
+    -----END PRIVATE KEY-----
+  ssl_crt: |
+    -----BEGIN CERTIFICATE-----
+    MIICtDCCAZygAwIBAgIJAJSRInn22jKUMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNV
+    BAMMB25ldWxhbmQwHhcNMTUxMDE1MTExOTIwWhcNMjUxMDEyMTExOTIwWjASMRAw
+    DgYDVQQDDAduZXVsYW5kMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+    0r60C4NzIuhEl4mLVW5IBpXcBOe9eghdtwbe3t5HSL5mvE1ttA/yXgSq0OLnxyiT
+    TzB7S3eOst/CHgzVjF/4P0yU+zYvHRC9SsPn7NpuIAW0AyRh97w9wSO0CR3LqWAs
+    xX8YeFBP8ozsU7QWYZuTIU9SeH5Ac3EgIadg9klvoOsYO6J4H8kRX7ND8bWjflWP
+    xUq3C+hR9YugI+cwOSVgS0AyrNJVA3hnsN5ZQp6PiYJ6bFZER9y26v8VfpcyPP8W
+    1TzvD2oIEU6TrN2sKFf/SQhhn1uRSiB+lyGg+dYOlanv2o7MEM0dM6wH/BeLQwYf
+    s6YuAsLfxdQM/b0OCT2llwIDAQABow0wCzAJBgNVHRMEAjAAMA0GCSqGSIb3DQEB
+    CwUAA4IBAQCKGMQ+dOh1SdYDADOAZesujzbIS5vxi7whg5o1XUHpo3neEbo6YCes
+    YCPb3pn5Pr0u4kqhzQchGe7DuccYDoOhuSFe8gu3P6BFdz7aapmGSwYcwzM6CbRJ
+    gnvkENLlUKTTSYg4UgweXNKX0xgC/oN40Anh9dqdoHUZiriL/ZkxwzMhbduN0wC7
+    lobrOpJl1S9j1ya1qBj755mEvnVD2eQ9grUExnjo++b4S5kxBqyHDvPYO7UNPwT4
+    gL7ZBfwXl65kB+sYTzb6qGgJnrW4rsiLHZL+YziCgOtAOkcIY2ejbX3FvQUZeQgK
+    fwvWmgVfuuKQmB10emq5EObkzmFsBT6P
+    -----END CERTIFICATE-----

@@ -1,7 +1,5 @@
 ---
-- hosts:
-  - ovh
-  - vagrant
+- hosts: all
 
   tasks:
   - name: install postgres requirements
@@ -80,15 +78,15 @@
     become_user: root
     become: yes
 
-#  - name: configure ssl key
-#    copy: dest=/etc/nginx/conf.d/kotti_neuland.key content="{{kotti.ssl_key}}" mode=0600
-#    become_user: root
-#    become: yes
-#
-#  - name: configure ssl crt
-#    copy: dest=/etc/nginx/conf.d/kotti_neuland.crt content="{{kotti.ssl_crt}}" mode=0600
-#    become_user: root
-#    become: yes
+  - name: configure ssl key
+    copy: dest=/etc/nginx/conf.d/mostusedsites_backend.key content="{{backend.ssl_key}}" mode=0600
+    become_user: root
+    become: yes
+
+  - name: configure ssl crt
+    copy: dest=/etc/nginx/conf.d/mostusedsites_backend.crt content="{{backend.ssl_crt}}" mode=0600
+    become_user: root
+    become: yes
 
   - name: restart nginx
     service: name=nginx state=reloaded
