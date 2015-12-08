@@ -1,16 +1,8 @@
 [buildout]
-extensions = mr.developer
 versions = versions
-allow-picked-versions = false
+find-links = http://eggs.guerilla-it.net/
 show-picked-versions = true
 parts = most_used_sites
-
-sources = sources
-auto-checkout = *
-always-checkout = force
-
-[sources]
-gmi.mostusedsites.backend = git https://github.com/geyer-moldfusz/gmi.most_used_sites.backend.git
 
 [most_used_sites]
 recipe = zc.recipe.egg
