@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, path: "provision.sh"
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "backend.yml"
+    ansible.playbook = "frontend.yml"
     ansible.groups = {
         "vagrant" => ["default"]
     }

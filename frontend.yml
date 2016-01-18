@@ -1,0 +1,38 @@
+---
+- hosts: all
+
+  tasks:
+  - name: install build requirements
+    become_user: root
+    become: yes
+    apt: pkg={{item}} state=installed
+    with_items:
+      - npm
+      - nodejs-legacy
+
+  - name: create workdir
+    become_user: root
+    become: yes
+    file: path={{frontend.workdir}} state=directory owner={{ansible_user_id}}
+
+  - name: checkout frontent repo
+    git: repo=https://github.com/geyer-moldfusz/gmi.most_used_sites.frontend.git dest={{frontend.workdir}} version=production
+
+  - name: run clean
+    command: npm run clean chdir={{frontend.workdir}}
+
+  - name: run build
+    command: npm run build chdir={{frontend.workdir}}
+
+  - name: sync to public
+    command: rsync -ax --delete-after ./build/ ./public chdir={{frontend.workdir}}
+
+  - name: configure nginx
+    template: dest=/etc/nginx/conf.d/mostusedsites_frontend.conf src=frontend/frontend.nginx
+    become_user: root
+    become: yes
+
+  - name: restart nginx
+    service: name=nginx state=reloaded
+    become_user: root
+    become: yes

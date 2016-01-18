@@ -1,0 +1,8 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{frontend.public_url}};
+
+    root {{frontend.workdir}}/public;
+}
+
