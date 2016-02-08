@@ -1,5 +1,5 @@
 upstream mostusedsites_backend {
-    server localhost:{{backend.port}};
+    server ip6-localhost:{{backend.port}};
 }
 
 server {
